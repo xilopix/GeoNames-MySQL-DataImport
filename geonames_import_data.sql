@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
 LOAD DATA LOCAL INFILE 'allCountries.txt'
 INTO TABLE geoname
 CHARACTER SET 'UTF8'
@@ -55,4 +57,7 @@ FIELDS TERMINATED BY ','
 LOAD DATA LOCAL INFILE 'zip/allCountries.txt'
 INTO TABLE postalCodes
 CHARACTER SET 'UTF8'
-(country, postal_code, name, admin1_name, admin1_code, admin2_name, admin2_code, admin3_name, admin3_code, latitude, longitude, accuracy)
+(country, postal_code, name, admin1_name, admin1_code, admin2_name, admin2_code, admin3_name, admin3_code, latitude, longitude, accuracy);
+
+SET FOREIGN_KEY_CHECKS = 1;
+

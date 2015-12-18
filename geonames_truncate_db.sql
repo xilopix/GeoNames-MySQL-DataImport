@@ -1,3 +1,4 @@
+SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE geoname;
 TRUNCATE TABLE alternatename;
 TRUNCATE TABLE countryinfo;
@@ -9,3 +10,4 @@ TRUNCATE TABLE featureCodes;
 TRUNCATE TABLE timeZones;
 TRUNCATE TABLE continentCodes;
 TRUNCATE TABLE postalCodes;
+SET FOREIGN_KEY_CHECKS = 1;
