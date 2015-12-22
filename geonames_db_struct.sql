@@ -30,6 +30,7 @@ CREATE TABLE `alternatename` (
   `isShortName` tinyint(1) DEFAULT NULL,
   `isColloquial` tinyint(1) DEFAULT NULL,
   `isHistoric` tinyint(1) DEFAULT NULL,
+  `isDBpedia` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`alternatenameId`),
   KEY `isoLanguage` (`isoLanguage`),
   KEY `alternateName` (`alternateName`)

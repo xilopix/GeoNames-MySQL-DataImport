@@ -50,6 +50,8 @@ download_geonames_data() {
     for zip in $zip_codes; do
         wget -c -P "$download_folder" -O "${zip:0:(-4)}_zip.zip" http://download.geonames.org/export/zip/$zip
     done
+    wget -c -P http://downloads.dbpedia.org/2015-04/core-i18n/en/interlanguage-links_en.nt.bz2
+    bzip2 -d interlanguage-links_en.nt.bz2
     unzip "*_zip.zip" -d ./zip
     rm *_zip.zip
     unzip "*.zip"

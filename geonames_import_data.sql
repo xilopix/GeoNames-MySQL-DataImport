@@ -5,10 +5,10 @@ INTO TABLE geoname
 CHARACTER SET 'UTF8'
 (geonameid, name, @asciiname, @alternatenames, @latitude, @longitude, fclass, fcode, country, @cc2, @admin1, @admin2, @admin3, @admin4, @population, @elevation, @gtopo30, @timezone, @moddate);
 
-LOAD DATA LOCAL INFILE 'alternateNames.txt'
+LOAD DATA LOCAL INFILE 'alternateNames-fixed.txt'
 INTO TABLE alternatename
 CHARACTER SET 'UTF8'
-(alternatenameid, geonameid, isoLanguage, alternateName, isPreferredName, isShortName, isColloquial, isHistoric);
+(alternatenameid, geonameid, isoLanguage, alternateName, isPreferredName, isShortName, isColloquial, isHistoric, isDBpedia);
 
 LOAD DATA LOCAL INFILE 'iso-languagecodes.txt'
 INTO TABLE iso_languagecodes
@@ -42,17 +42,18 @@ CHARACTER SET 'UTF8'
 IGNORE 1 LINES
 (timeZoneId, GMT_offset, DST_offset);
 
-LOAD DATA LOCAL INFILE 'countryInfo.txt'
-INTO TABLE countryinfo
-CHARACTER SET 'UTF8'
-IGNORE 51 LINES
-(iso_alpha2, iso_alpha3, iso_numeric, fips_code, name, capital, areaInSqKm, population, continent, tld, currency, currencyName, phone, postalCodeFormat, postalCodeRegex, languages, geonameid, neighbours, equivalentFipsCode);
-
 LOAD DATA LOCAL INFILE 'continentCodes.txt'
 INTO TABLE continentCodes
 CHARACTER SET 'UTF8'
 FIELDS TERMINATED BY ','
 (code, name, geonameId);
+
+LOAD DATA LOCAL INFILE 'countryInfo.txt'
+INTO TABLE countryinfo
+CHARACTER SET 'UTF8'
+IGNORE 51 LINES
+(iso_alpha2, iso_alpha3, iso_numeric, fips_code, name, capital, areaInSqKm, population, continent, tld, currency, currencyName, phone, postalCodeFormat, postalCodeRegex, languages, @vgeonameid, neighbours, equivalentFipsCode)
+SET geonameid = nullif(@vgeonameid,'');
 
 LOAD DATA LOCAL INFILE 'zip/allCountries.txt'
 INTO TABLE postalCodes
